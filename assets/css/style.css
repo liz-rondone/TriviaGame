@@ -1,2 +1,11 @@
 .pad-3-10{padding: 3% 10%;}
-.pad-r-10{padding-right:10px;
+.pad-r-10{padding-right:10px;}
+
+/*wrapper*/
+.question{
+	padding: 10px 30px;
+}
+
+.answer{
+	padding-right: 10px;
+}
