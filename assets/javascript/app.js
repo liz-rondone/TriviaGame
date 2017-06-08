@@ -1,40 +1,64 @@
 // VARIABLES
 var count=60;
 var counter;
-var questions = [{
+var questions = [
+{
 	question: "What does TBT stand for?",
-	answer: ["That Basic Tinder", "Throw Back Thursday", "Take Back Tuesday", "Ten Bad Turkeys"],
+	answer: [" Nothing, it’s not an acronym", "Throwback Thursday", "Take Back Tuesday", "Ten Bad Turkeys"],
 	correctAnswer: "Throw Back Thursday"
 },
 {
 	question: "Someone who is “basic” is defined by enjoying which of the following?",
-	answer: ["Pumpkin Lattes", " UGG Boots", "Brunch", "All of the Above"],
-	correctAnswer: "All of the Above"        
+	answer: ["Pumpkin lattes", " UGG boots", "Brunch", "All of the above"],
+	correctAnswer: "All of the above"        
 },
 {
-	question: "What is the best band of all time?",
-	answer: ["Beatles", "New Order", "ABBA", "Carley Rae Jepson"],
-	correctAnswer: "ABBA"        
+	question: "Someone who naturally looks angry or annoyed without meaning to most likely has what?",
+	answer: ["A wedgie", "Constipation", "Resting b****face", "A bad personality"],
+	correctAnswer: "Resting b****face"        
 },
 {
-	question: "What is the best band of all time?",
-	answer: ["Beatles", "New Order", "ABBA", "Carley Rae Jepson"],
-	correctAnswer: "ABBA"        
+	question: "What decade do Millennials like to reminisce about?",
+	answer: ["00’s", "90’s", "80’s", "70’s"],
+	correctAnswer: "90’s"        
 },
 {
-	question: "What is the best band of all time?",
-	answer: ["Beatles", "New Order", "ABBA", "Carley Rae Jepson"],
-	correctAnswer: "ABBA"        
+	question: "Cutting off all communication with someone without any notice is known as what?",
+	answer: ["Ghosting", "Zombied", "Werewolfing", "Vampired"],
+	correctAnswer: "Ghosting"        
 },];
+var right;
+var wrong;
+
 
 // EVENTS
-$('#start').on('click', function() {
+$('#start').click(function() {
 	startGame();
-})
+	counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+	$('.js-check').on('click', function(){
+		alert($(this).attr('data-name')); //alert radio button clicked
+		questions[0].correctAnswer;
+		alert(questions[this.name].correctAnswer); //alert right answer
+		var correct = (questions[this.name].correctAnswer); //alert right answer
+		if (answerChosen === correct){
+			alert("awesome");
+			right++;
+		}
+		else{
+			alert("try again");
+			wrong++;
+		}
+	})
+	$(this).addClass('hide');
+});
+
+$('#submitButton').click(function() {
+	checkAnswer();
+	$(this).addClass('hide');
+});
 
 
 // FUNCTIONS
-
 function startGame() {
 	var j = 0;
 	var questionString = '';
@@ -45,7 +69,7 @@ function startGame() {
 		questionString = '<div class="text-success"><h4>' + j + '. ' + questions[i].question + '</h4></div>';
 		//classes for answer div
 		for(var a=0; a < questions[i].answer.length; a++) {
-			answerString += '<div class="answer"><input type="radio">' + questions[i].answer[a] + '</input></div>';
+			answerString += '<div class="answer"><input type="radio" name="'' + i +'" data-name="'+ questions[i].answer[a]'">' + questions[i].answer[a] + '</input></div>';
 		}
 
 		var questionDiv = $('<div></div>')
@@ -55,20 +79,14 @@ function startGame() {
 		questionDiv.append(answerString)
 		$('#questions').append(questionDiv)
 		//$('#questions').append('<div class="question">' + questionString + answerString + '</div>');
-        
-        var submitter = '';
-        submitter = $('<div class="submitter"><input class="quizSubmit btn btn-info" id="submitButton" onClick="submitQuiz()" type="submit" value="Submit" /></div>')
-		$('#submitButton').append(submitter)
 	}
+	var submitter = '';
+    submitter = $('<div class="submitter"><input class="quizSubmit btn btn-info" id="submitButton" onClick="submitQuiz()" type="submit" value="Submit" /></div>')
+	$('#submitButton').append(submitter)
 
 }
 
-$('#start').click(function() {
-	counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-	$(this).addClass('hide');
-});
 
-// Timer
 function timer() {
 	count=count-1;
 	if (count <= 0) {
@@ -99,7 +117,7 @@ function checkAnswer() {
 			console.log(correct);
 		}
 	}
-	$('#submitButton').click('You answered ' correct ' out of 5 correctly.');
+	$('#results').click('You answered ' correct ' out of 5 correctly.');
 }
 
 /*
