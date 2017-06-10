@@ -1,17 +1,17 @@
 /******************* VARIABLES *******************/
-var count=60;
+var count=100;
 var counter;
-var right;
-var wrong;
+var right = 0;
+var wrong = 0;
 var questions = [
 {
 	question: "What does TBT stand for?",
-	answer: [" Nothing, it’s not an acronym", "Throwback Thursday", "Take Back Tuesday", "Ten Bad Turkeys"],
+	answer: ["Nothing, it’s not an acronym", "Throwback Thursday", "Take Back Tuesday", "Ten Bad Turkeys"],
 	correctAnswer: "Throw Back Thursday"
 },
 {
-	question: "Someone who is “basic” is defined by enjoying which of the following?",
-	answer: ["Pumpkin lattes", " UGG boots", "Brunch", "All of the above"],
+	question: 'Someone who is “basic” is defined by enjoying which of the following?',
+	answer: ["Pumpkin lattes", "UGG boots", "Brunch", "All of the above"],
 	correctAnswer: "All of the above"        
 },
 {
@@ -38,16 +38,16 @@ $('#start').click(function() {
 	counter=setInterval(timer, 1000); //1000 will  run it every 1 second
 	
 	$('.js-check').on('click', function(){
-		console.log($(this).attr('data-name')); //alert radio button clicked
-		questions[0].correctAnswer;
-		console.log(questions[this.name].correctAnswer); //alert right answer
-		var correct = (questions[this.name].correctAnswer); //alert right answer
+		//alert($(this).attr('data-name')); //alert radio button clicked
+		//alert(questions[this.name].correctAnswer); //alert right answer
+		var answerChosen = ($(this).attr('data-name')); //this is the actual thing you check
+		var correct = (questions[this.name].correctAnswer); 
 		if (answerChosen === correct){
-			console.log("good");
+			console.log("CORRECT");
 			right++;
 		}
 		else{
-			console.log("bad");
+			console.log("INCORRECT");
 			wrong++;
 		}
 	})
@@ -63,8 +63,8 @@ $('#submitButton').click(function() {
 
 
 function results() {
-	$('.submitter').html(right + ' out of 5 correct.');
-	$('.submitter').html( wrong + ' out of 5 wrong.');
+	$('#right').html(right + '/5 correct');
+	$('#wrong').html( wrong + '/5 wrong');
 }
 
 
@@ -78,7 +78,7 @@ function startGame() {
 		questionString = '<div class="text-success"><h4>' + j + '. ' + questions[i].question + '</h4></div>';
 		//classes for answer div
 		for(var a=0; a < questions[i].answer.length; a++) {
-			answerString += '<div class="answer js-check"><input type="radio" name="'+ i +'" data-name="'+ questions[i].answer[a] +'">' + questions[i].answer[a] + '</input></div>';
+			answerString += '<div class="answer"><input class="js-check" type="radio" name="'+ i +'" data-name="'+ questions[i].answer[a] +'">' + questions[i].answer[a] + '</input></div>';
 		}
 
 		var questionDiv = $('<div></div>')
@@ -91,9 +91,8 @@ function startGame() {
 	}
 	// create submit button
 	var submitter = '';
-    submitter = $('<div class="submitter"><input class="quizSubmit btn btn-info" id="submitButton" onClick="submitQuiz()" type="submit" value="Submit" /></div>')
+    submitter = $('<div class="submitter"><input class="quizSubmit btn btn-info" id="submitButton" onClick="results()" type="submit" value="Submit" /></div>')
 	$('#submitButton').append(submitter)
-
 }
 
 
