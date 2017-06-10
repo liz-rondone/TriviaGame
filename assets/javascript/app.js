@@ -1,5 +1,5 @@
 /******************* VARIABLES *******************/
-var count=100;
+var count=60;
 var counter;
 var right = 0;
 var wrong = 0;
@@ -15,14 +15,14 @@ var questions = [
 	correctAnswer: "All of the above"        
 },
 {
-	question: "Someone who naturally looks angry or annoyed without meaning to most likely has what?",
-	answer: ["A wedgie", "Constipation", "Resting b****face", "A bad personality"],
-	correctAnswer: "Resting b****face"        
-},
-{
 	question: "What decade do Millennials like to reminisce about?",
 	answer: ["00’s", "90’s", "80’s", "70’s"],
 	correctAnswer: "90’s"        
+},
+{
+	question: "Someone who naturally looks angry or annoyed without meaning to most likely has what?",
+	answer: ["A wedgie", "Constipation", "Resting b****face", "A bad personality"],
+	correctAnswer: "Resting b****face"        
 },
 {
 	question: "Cutting off all communication with someone without any notice is known as what?",
@@ -65,6 +65,7 @@ $('#submitButton').click(function() {
 function results() {
 	$('#right').html(right + '/5 Correct');
 	$('#wrong').html(wrong + '/5 Wrong');
+	$('#resultsContainer').addClass('well');
 
 	if (right === 5) {
 		$('#results').html("For the win! You're Millennial AF.");
@@ -73,7 +74,7 @@ function results() {
 		$('#results').html("Yaaaaaaas! #blessed");
 	}
 	else if (right === 3) {
-		$('#results').html("You're on fleek. Essentially, you did well but do you really want to be something only a Kardashian will use?");
+		$('#results').html("You're on fleek. You did well but do you really want to be labeled by a term only a Kardashian will use?");
 	}
 	else if (right === 2) {
 		$('#results').html("SMH \u2014 you could have tried harder.");

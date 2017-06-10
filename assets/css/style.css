@@ -15,5 +15,9 @@
 }
 
 .results{
-	padding: 0% 10%;
+	margin: 10px 2%;
+}
+
+.well{
+	margin: 3% 10%;
 }
