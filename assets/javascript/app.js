@@ -58,7 +58,6 @@ $('#start').click(function() {
 $('#submitButton').click(function() {
 	results();
 	$(this).addClass('hide');
-
 });
 
 
@@ -74,7 +73,7 @@ function results() {
 		$('#results').html("Yaaaaaaas! #blessed");
 	}
 	else if (right === 3) {
-		$('#results').html("You're on fleek. You did well but do you really want to be labeled by a term only a Kardashian will use?");
+		$('#results').html("You're on fleek. You did well but do you really want to be labeled by a term only Kardashians use?");
 	}
 	else if (right === 2) {
 		$('#results').html("SMH \u2014 you could have tried harder.");
@@ -102,7 +101,7 @@ function startGame() {
 		}
 
 		var questionDiv = $('<div></div>')
-		questionDiv.addClass('question')
+		questionDiv.addClass('question well')
 		questionDiv.attr('questionNum', i.toString())	//adding value and converting string to number
 		questionDiv.append(questionString)
 		questionDiv.append(answerString)
@@ -111,7 +110,7 @@ function startGame() {
 	}
 	// create submit button
 	var submitter = '';
-    submitter = $('<div class="submitter"><input class="quizSubmit btn btn-info" id="submitButton" onClick="results()" type="submit" value="Submit" /></div>')
+    submitter = $('<div class="submitter"><input class="quizSubmit btn btn-default btn-lg" id="submitButton" onClick="results()" type="submit" value="Submit" /></div>')
 	$('#submitButton').append(submitter)
 }
 
